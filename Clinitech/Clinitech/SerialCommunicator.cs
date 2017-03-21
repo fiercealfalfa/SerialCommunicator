@@ -16,9 +16,14 @@ namespace Clinitech
         }
         public void EstablishConnection()
         {
-            sp = new SerialPort();
+            string[] portNames = SerialPort.GetPortNames();
+            sp = new SerialPort("COM4");
             sp.BaudRate = 9600;
-            string[] portNames = SerialPort.GetPortNames(); 
+            Console.WriteLine("\0007");
+            sp.Write("\0007");
+            byte[] buffer = new byte [256];
+            Console.WriteLine(sp.Read(buffer,0,0));
+            
         }
     }
 }
